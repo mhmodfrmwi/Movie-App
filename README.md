@@ -35,6 +35,5 @@ Welcome to the Movie App! This application allows you to explore and discover in
 ## Video Preview
 
 
-https://github.com/mhmodfrmwi/Movie-App/assets/151141036/6da6d519-7d20-4c1c-9a1c-ff7514a33856
+https://github.com/mhmodfrmwi/Movie-App/assets/151141036/220ebb48-dd4a-4b21-a46e-40679d3e0152
 
-sers/mahmoud/Documents/Captura/MovieApp).
