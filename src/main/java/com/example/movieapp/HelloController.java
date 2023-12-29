@@ -1,12 +1,15 @@
 package com.example.movieapp;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 import java.sql.*;
 
@@ -19,20 +22,24 @@ public class HelloController {
     private ScrollPane gridContainer;
 
     private final ObservableList<MovieCard> movieCards = FXCollections.observableArrayList();
-
+    @FXML
+    private Label messageLabel;
     @FXML
     private void run(ActionEvent actionEvent) {
         fetchData("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1");
+        updateMessage("Dashboard!");
     }
 
     @FXML
     private void run2(ActionEvent actionEvent) {
         fetchData("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1");
+        updateMessage("Top Rated!");
     }
 
     @FXML
     private void run3(ActionEvent actionEvent) {
         fetchData("https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1");
+        updateMessage("Trending!");
     }
 
     private void fetchData(String apiUrl) {
@@ -127,6 +134,7 @@ public class HelloController {
 
     public void database(ActionEvent actionEvent) {
         selectFromDataBase();
+        updateMessage("Favorite!");
     }
 
     public void deleteAllData() {
@@ -170,6 +178,17 @@ public class HelloController {
             }
         }
     }
+    private void updateMessage(String message) {
+        messageLabel.setText(message);
+        // Set a delay and hide the label after 3 seconds
+        PauseTransition visiblePause = new PauseTransition(Duration.seconds(30));
+        visiblePause.setOnFinished(event -> messageLabel.setVisible(false));
+        visiblePause.play();
+
+        // Make the label visible
+        messageLabel.setVisible(true);
+    }
+
     public static void handleFavoriteAction(String title, String overview, String releaseDate, String image, boolean isSelected) {
         if (isSelected) {
             addToDatabase(title, overview, releaseDate, image);
