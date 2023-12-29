@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="649.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.HelloController">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="136.0">
+         <children>
+            <Label onMouseReleased="#home" prefHeight="28.0" prefWidth="135.0" text="Movie App" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <VBox layoutX="32.0" layoutY="158.0" prefHeight="289.0" prefWidth="100.0">
+         <children>
+            <Button fx:id="dashboard" mnemonicParsing="false" onAction="#run" prefHeight="42.0" prefWidth="100.0" style="-fx-background-color: #FF0F50; -fx-font-weight: bold; -fx-font-family: Arial, Helvetica, sans-serif;" text="Dashboard" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="21.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="favorite" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#database" prefHeight="42.0" prefWidth="100.0" style="-fx-background-color: #FF0F50; -fx-font-weight: bold; -fx-font-family: Arial, Helvetica, sans-serif;" text="Favorite" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="21.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="top_rated" layoutX="10.0" layoutY="68.0" mnemonicParsing="false" onAction="#run2" prefHeight="42.0" prefWidth="100.0" style="-fx-background-color: #FF0F50; -fx-font-weight: bold; -fx-font-family: Arial, Helvetica, sans-serif;" text="Top Rated" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="21.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="trending" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" onAction="#run3" prefHeight="42.0" prefWidth="100.0" style="-fx-background-color: #FF0F50; -fx-font-weight: bold; -fx-font-family: Arial, Helvetica, sans-serif;" text="Trending" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="21.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="200.0" layoutY="50.0">
+         <children>
+            <Label prefHeight="58.0" prefWidth="348.0" style="-fx-font-weight: bold;" text="Welcome to our Movie " textFill="WHITE">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <Label prefHeight="0.0" prefWidth="348.0" style="-fx-font-weight: bold;" text="we hope you will have a good experience in our app" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="221.0" style="-fx-font-weight: bold;" text="Let's start your journey with us" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <ScrollPane fx:id="gridContainer" layoutX="599.0" layoutY="418.0" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: black; visibility: hidden;">
+         <content>
+            <GridPane fx:id="movieContainer" prefHeight="226.0" prefWidth="35.0" style="-fx-background-color: black;">
+
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>
