@@ -1,38 +1,44 @@
 # Movie App
 
+Welcome to the Movie App! This application allows you to explore and discover information about various movies, including currently playing, top-rated, and upcoming films. You can also mark your favorite movies and store them in a local database.
+
 ## Features
 
-- **Now Playing Movies:**
-  - View a list of movies currently playing in theaters.
-  - Click on a movie to see detailed information.
+1. **Dashboard:**
+   - Click on the "Dashboard" button to view a list of currently playing movies.
+   - Each movie is displayed with essential information and a poster image.
 
-- **Top Rated Movies:**
-  - Explore a collection of top-rated movies.
-  - Access details for each movie, including title, overview, and release date.
+2. **Top Rated Movies:**
+   - Explore a curated list of top-rated movies by clicking on the "Top Rated" button.
+   - View detailed information about each top-rated movie.
 
-- **Upcoming Movies:**
-  - Discover upcoming movie releases.
-  - Get information about release dates and other details.
+3. **Trending Movies:**
+   - Discover trending movies by clicking on the "Trending" button.
+   - Stay updated on the latest popular films.
 
-- **Favorites:**
-  - Mark movies as favorites using the checkbox.
-  - Save and manage your favorite movies locally.
+4. **Favorites:**
+   - Mark movies as favorites by toggling the heart-shaped checkbox.
+   - View a list of your favorite movies by clicking on the "Favorite" button.
 
-- **Database Integration:**
-  - Connect to a MySQL database to store and retrieve movie data.
-  - Add, remove, and view movies from the database.
+5. **Database Integration:**
+   - Save and retrieve movie information from a MySQL database.
+   - Add new movies to the database, and delete all data if needed.
 
-- **Responsive UI:**
-  - User-friendly interface with responsive design.
-  - Enjoy a seamless experience on different devices.
+6. **Movie Information:**
+   - Click on a movie poster to display detailed information in a pop-up dialog.
+   - Information includes the movie title, overview, and release date.
 
-- **Movie Information Dialog:**
-  - Click on a movie poster to display a dialog with detailed information.
-  - Includes movie title, overview, and release date.
+7. **Responsive Design:**
+   - Enjoy a user-friendly and responsive design for an optimal viewing experience.
 
-- **Dynamic Grid Layout:**
-  - Movies are displayed in a dynamic grid layout for better visualization.
-## Screenshots
+## Getting Started
 
-[Download Video](C:\Users\mahmoud\Documents\Captura\MovieApp)
+1. Clone the repository to your local machine.
+2. Set up a MySQL database named \`moviecard\` with the required tables.
+3. Update the database connection details in \`HelloController.java\`.
+4. Run the application using \`HelloApplication.java\`.
+5. Explore different sections of the app and interact with movie cards.
 
+## Video Preview
+
+Watch the video preview of the Movie App [here](file:///C:/Users/mahmoud/Documents/Captura/MovieApp).
