@@ -31,14 +31,10 @@ Welcome to the Movie App! This application allows you to explore and discover in
 7. **Responsive Design:**
    - Enjoy a user-friendly and responsive design for an optimal viewing experience.
 
-## Getting Started
-
-1. Clone the repository to your local machine.
-2. Set up a MySQL database named \`moviecard\` with the required tables.
-3. Update the database connection details in \`HelloController.java\`.
-4. Run the application using \`HelloApplication.java\`.
-5. Explore different sections of the app and interact with movie cards.
 
 ## Video Preview
 
-Watch the video preview of the Movie App [here](file:///C:/Users/mahmoud/Documents/Captura/MovieApp).
+
+https://github.com/mhmodfrmwi/Movie-App/assets/151141036/6da6d519-7d20-4c1c-9a1c-ff7514a33856
+
+sers/mahmoud/Documents/Captura/MovieApp).
