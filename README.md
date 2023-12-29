@@ -32,3 +32,6 @@
 
 - **Dynamic Grid Layout:**
   - Movies are displayed in a dynamic grid layout for better visualization.
+## Screenshots
+
+![Movie App](C:\Users\mahmoud\Documents\Captura\MovieApp)
