@@ -7,7 +7,8 @@ module com.example.movieapp {
     requires com.fasterxml.jackson.databind;
     requires org.json;
     requires java.sql;
+    requires io.github.cdimascio.dotenv.java;
     opens com.example.movieapp to javafx.fxml, com.fasterxml.jackson.databind;
     exports com.example.movieapp;
-
+    
 }

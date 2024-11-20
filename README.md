@@ -58,8 +58,14 @@ Before running the application, ensure you have the following installed:
 4. **Add your TMDB API Key**:
    Replace the placeholder API key in `DataFetcher.java`:
 
+   1. **.env File Setup**:
+
+   - Instructions on where to place the `.env` file (inside `src/main/resources`).
+   - Guide to adding the `MOVIE_API_KEY` in the `.env` file.
+
    ```java
-   con.setRequestProperty("Authorization", "Bearer your_api_key");
+   String apiKey = System.getenv("MOVIE_API_KEY");
+   con.setRequestProperty("Authorization", "Bearer " + apikey);
    ```
 
 5. **Run the application**:
