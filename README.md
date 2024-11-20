@@ -1,39 +1,88 @@
 # Movie App
 
-Welcome to the Movie App! This application allows you to explore and discover information about various movies, including currently playing, top-rated, and upcoming films. You can also mark your favorite movies and store them in a local database.
+The Movie App is a JavaFX-based desktop application that provides an engaging experience for movie enthusiasts. Users can explore current movies, top-rated titles, and upcoming releases, and they can mark their favorite movies for quick access.
+
+---
 
 ## Features
 
-1. **Dashboard:**
-   - Click on the "Dashboard" button to view a list of currently playing movies.
-   - Each movie is displayed with essential information and a poster image.
+- **Dashboard**: Displays currently playing movies.
+- **Top Rated**: Shows movies with the highest ratings.
+- **Trending**: Lists upcoming movies.
+- **Favorite**: Allows users to add and view their favorite movies.
+- **Movie Information**: Click on any movie poster to view detailed information about the movie.
+- **Local Database**: Supports storing favorite movies using MySQL.
 
-2. **Top Rated Movies:**
-   - Explore a curated list of top-rated movies by clicking on the "Top Rated" button.
-   - View detailed information about each top-rated movie.
+---
 
-3. **Trending Movies:**
-   - Discover trending movies by clicking on the "Trending" button.
-   - Stay updated on the latest popular films.
+## Prerequisites
 
-4. **Favorites:**
-   - Mark movies as favorites by toggling the heart-shaped checkbox.
-   - View a list of your favorite movies by clicking on the "Favorite" button.
+Before running the application, ensure you have the following installed:
 
-5. **Database Integration:**
-   - Save and retrieve movie information from a MySQL database.
-   - Add new movies to the database, and delete all data if needed.
+- [Java 17 or later](https://www.oracle.com/java/technologies/javase-downloads.html)
+- [JavaFX](https://openjfx.io/)
+- [MySQL](https://www.mysql.com/)
+- An API key from [The Movie Database (TMDB)](https://www.themoviedb.org/).
 
-6. **Movie Information:**
-   - Click on a movie poster to display detailed information in a pop-up dialog.
-   - Information includes the movie title, overview, and release date.
+---
 
-7. **Responsive Design:**
-   - Enjoy a user-friendly and responsive design for an optimal viewing experience.
+## Setup Instructions
 
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-repo/movie-app.git
+   ```
+2. **Set up the MySQL database**:
+   - Create a new database named `moviecard`.
+   - Use the following SQL to create the required table:
+     ```sql
+     CREATE TABLE moviecard (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         title VARCHAR(255),
+         overview TEXT,
+         release_date DATE,
+         image TEXT
+     );
+     ```
+3. **Update the database configuration**:
+   Open `HelloController.java` and update the database connection string with your MySQL credentials:
 
-## Video Preview
+   ```java
+   Connection connection = DriverManager.getConnection(
+       "jdbc:mysql://127.0.0.1:3306/moviecard",
+       "your-username",
+       "your-password"
+   );
+   ```
 
+4. **Add your TMDB API Key**:
+   Replace the placeholder API key in `DataFetcher.java`:
 
-https://github.com/mhmodfrmwi/Movie-App/assets/151141036/220ebb48-dd4a-4b21-a46e-40679d3e0152
+   ```java
+   con.setRequestProperty("Authorization", "Bearer your_api_key");
+   ```
 
+5. **Run the application**:
+   - Open the project in your favorite IDE (e.g., IntelliJ IDEA or Eclipse).
+   - Run the `main` method in `HelloApplication.java`.
+
+---
+
+## Technologies Used
+
+- **Java**: Programming language for application logic.
+- **JavaFX**: Framework for the graphical user interface.
+- **TMDB API**: Provides movie data.
+- **MySQL**: Database for storing favorite movies.
+
+---
+
+---
+
+## Future Enhancements
+
+- Add user authentication.
+- Support more languages.
+- Implement a watchlist feature.
+
+---
