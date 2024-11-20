@@ -10,7 +10,6 @@ The Movie App is a JavaFX-based desktop application that provides an engaging ex
 - **Top Rated**: Shows movies with the highest ratings.
 - **Trending**: Lists upcoming movies.
 - **Favorite**: Allows users to add and view their favorite movies.
-- **Movie Information**: Click on any movie poster to view detailed information about the movie.
 - **Local Database**: Supports storing favorite movies using MySQL.
 
 ---
