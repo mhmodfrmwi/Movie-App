@@ -10,7 +10,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 
 public class HelloController {
@@ -195,5 +201,226 @@ public class HelloController {
         } else {
             removefromdatabase(title);
         }
+    }
+    // Adds a list of movies to the GridPane.
+    public void addMovieCards(ObservableList<MovieCard> movies) {
+        movieCards.addAll(movies);
+        updateMovieContainer();
+    }
+
+    // Clears all movie cards from the UI and the ObservableList.
+    public void clearMovieCards() {
+        movieCards.clear();
+        movieContainer.getChildren().clear();
+        gridContainer.setVisible(false);
+    }
+
+    // Filters displayed movies based on a search keyword.
+    public void searchMovies(String keyword) {
+        ObservableList<MovieCard> filteredList = FXCollections.observableArrayList();
+        for (MovieCard card : movieCards) {
+            if (card.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
+                filteredList.add(card);
+            }
+        }
+        movieCards.clear();
+        movieCards.addAll(filteredList);
+        updateMovieContainer();
+    }
+
+    // Reloads all movie cards from the database to the UI.
+    public void reloadFromDatabase() {
+        selectFromDataBase();
+        updateMovieContainer();
+    }
+
+    // Toggles the visibility of the ScrollPane.
+    public void toggleGridVisibility() {
+        gridContainer.setVisible(!gridContainer.isVisible());
+    }
+    /**
+     * Refreshes the data by re-fetching movies from the current data source.
+     */
+    public void refreshMovies() {
+        if (!movieCards.isEmpty()) {
+            movieCards.clear();
+        }
+        selectFromDataBase();
+        updateMessage("Movies refreshed!");
+    }
+
+    /**
+     * Sorts the displayed movies alphabetically by title.
+     */
+    public void sortMoviesByTitle() {
+        movieCards.sort((movie1, movie2) -> movie1.getTitle().compareToIgnoreCase(movie2.getTitle()));
+        updateMovieContainer();
+        updateMessage("Movies sorted by title!");
+    }
+
+    /**
+     * Sorts the displayed movies by their release date.
+     */
+    public void sortMoviesByReleaseDate() {
+        movieCards.sort((movie1, movie2) -> movie1.getReleaseDate().compareTo(movie2.getReleaseDate()));
+        updateMovieContainer();
+        updateMessage("Movies sorted by release date!");
+    }
+
+    /**
+     * Marks all currently displayed movies as favorites.
+     */
+    public void markAllAsFavorite() {
+        for (MovieCard card : movieCards) {
+            addToDatabase(card.getTitle(), card.getOverview(), card.getReleaseDate(), card.getImagePath());
+        }
+        updateMessage("All movies marked as favorites!");
+    }
+
+    /**
+     * Removes all displayed movies from the database.
+     */
+    public void removeAllFromDatabase() {
+        deleteAllData();
+        clearMovieCards();
+        updateMessage("All movies removed from the database!");
+    }
+
+    /**
+     * Hides the message label immediately without waiting for the timer.
+     */
+    public void hideMessageLabel() {
+        messageLabel.setVisible(false);
+    }
+
+    /**
+     * Displays a random movie card from the list.
+     */
+    public void showRandomMovie() {
+        if (!movieCards.isEmpty()) {
+            int randomIndex = (int) (Math.random() * movieCards.size());
+            MovieCard randomMovie = movieCards.get(randomIndex);
+            clearMovieCards();
+            movieCards.add(randomMovie);
+            updateMovieContainer();
+            updateMessage("Random movie displayed!");
+        } else {
+            updateMessage("No movies available to display!");
+        }
+    }
+
+    /**
+     * Highlights movies that contain a specific keyword in their title.
+     *
+     * @param keyword The keyword to search for.
+     */
+    public void highlightMoviesByKeyword(String keyword) {
+        for (MovieCard card : movieCards) {
+            if (card.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
+                card.highlight(); // Assuming MovieCard has a highlight method.
+            } else {
+                card.unhighlight(); // Assuming MovieCard has an unhighlight method.
+            }
+        }
+        updateMessage("Highlighted movies containing: " + keyword);
+    }
+
+    /**
+     * Paginates the displayed movie cards into smaller chunks.
+     *
+     * @param pageNumber The page number to display.
+     * @param itemsPerPage Number of items per page.
+     */
+    public void paginateMovies(int pageNumber, int itemsPerPage) {
+        int startIndex = (pageNumber - 1) * itemsPerPage;
+        int endIndex = Math.min(startIndex + itemsPerPage, movieCards.size());
+        if (startIndex >= movieCards.size()) {
+            updateMessage("Page number exceeds the available data!");
+            return;
+        }
+        ObservableList<MovieCard> paginatedList = FXCollections.observableArrayList(movieCards.subList(startIndex, endIndex));
+        movieCards.clear();
+        movieCards.addAll(paginatedList);
+        updateMovieContainer();
+        updateMessage(String.format("Showing page %d with %d items per page.", pageNumber, itemsPerPage));
+    }
+    // Adds movie cards from a JSON string (e.g., API response)
+    public void addMovieCardsFromJson(String jsonData) {
+        // Parse the JSON data and create MovieCard objects
+        // Assuming the jsonData is in the correct format and can be parsed
+        try {
+            JSONObject jsonResponse = new JSONObject(jsonData);
+            JSONArray results = jsonResponse.getJSONArray("results");
+
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject movieData = results.getJSONObject(i);
+                MovieCard movieCard = new MovieCard();
+                movieCard.setMovieData(
+                        movieData.getString("title"),
+                        movieData.getString("overview"),
+                        movieData.getString("release_date"),
+                        movieData.getString("poster_path")
+                );
+                movieCards.add(movieCard);
+            }
+            updateMovieContainer();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Get the current number of movie cards
+    public int getMovieCardCount() {
+        return movieCards.size();
+    }
+
+    // Filter movies by their favorite status (e.g., show only favorite movies)
+    public void filterMoviesByFavoriteStatus(boolean isFavorite) {
+        ObservableList<MovieCard> filteredList = FXCollections.observableArrayList();
+        for (MovieCard card : movieCards) {
+            if (card.isFavorite() == isFavorite) {
+                filteredList.add(card);
+            }
+        }
+        movieCards.clear();
+        movieCards.addAll(filteredList);
+        updateMovieContainer();
+    }
+
+    // Update an existing movie card in the container (e.g., after modifying movie data)
+    public void updateMovieCard(MovieCard movieCard) {
+        int index = movieCards.indexOf(movieCard);
+        if (index != -1) {
+            movieCards.set(index, movieCard); // Update the card in the list
+            updateMovieContainer();
+        }
+    }
+
+    // Set visibility of all movie cards (useful for showing/hiding all at once)
+    public void setMovieCardVisibility(boolean isVisible) {
+        for (MovieCard card : movieCards) {
+            card.setVisible(isVisible);
+        }
+        updateMovieContainer();
+    }
+
+    // Set the opacity of the entire grid container (for UI effects)
+    public void setGridContainerOpacity(double opacity) {
+        gridContainer.setOpacity(opacity);
+    }
+
+    // Load movie data from a file (e.g., a JSON file or CSV file)
+    public void loadMovieDataFromFile(String filePath) {
+        try {
+            String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
+            addMovieCardsFromJson(fileContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Adds a movie card at a specific position (row, column) in the grid
+    public void addMovieCardToSpecificPosition(MovieCard movieCard, int row, int column) {
+        movieContainer.add(movieCard, column, row);
     }
 }

@@ -5,22 +5,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="649.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.HelloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="949.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.HelloController">
    <children>
       <Label fx:id="messageLabel" layoutX="276.0" layoutY="13.0" prefHeight="38.0" prefWidth="158.0" style="-fx-font-weight: bold;" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font></Label>
-      <Pane layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="136.0">
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="236.0">
          <children>
-            <Label layoutX="1.0" layoutY="-1.0" onMouseReleased="#home" prefHeight="28.0" prefWidth="135.0" text="Movie App" textFill="WHITE">
+            <Label layoutX="1.0" layoutY="-1.0" onMouseReleased="#home" prefHeight="28.0" prefWidth="235.0" text="Movie App" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <VBox layoutX="32.0" layoutY="158.0" prefHeight="289.0" prefWidth="100.0">
+      <VBox layoutX="32.0" layoutY="258.0" prefHeight="289.0" prefWidth="200.0">
          <children>
             <Button fx:id="dashboard" mnemonicParsing="false" onAction="#run" prefHeight="42.0" prefWidth="100.0" style="-fx-background-color: #FF0F50; -fx-font-weight: bold; -fx-font-family: Arial, Helvetica, sans-serif;" text="Dashboard" textFill="WHITE">
                <VBox.margin>
@@ -58,7 +58,7 @@
       </VBox>
       <VBox layoutX="200.0" layoutY="50.0">
          <children>
-            <Label prefHeight="58.0" prefWidth="348.0" style="-fx-font-weight: bold;" text="Welcome to our Movie " textFill="WHITE">
+            <Label prefHeight="58.0" prefWidth="648.0" style="-fx-font-weight: bold;" text="Welcome to our Movie " textFill="WHITE">
                <font>
                   <Font size="31.0" />
                </font>
@@ -75,12 +75,12 @@
             </Label>
          </children>
       </VBox>
-      <ScrollPane fx:id="gridContainer" layoutX="599.0" layoutY="418.0" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: black; visibility: hidden;">
+      <ScrollPane fx:id="gridContainer" layoutX="599.0" layoutY="518.0" prefHeight="0.0" prefWidth="900.0" style="-fx-background-color: black; visibility: hidden;">
          <content>
             <GridPane fx:id="movieContainer" prefHeight="226.0" prefWidth="35.0" style="-fx-background-color: black;">
-
             </GridPane>
          </content>
       </ScrollPane>
+
    </children>
 </Pane>
